@@ -16,7 +16,6 @@ static void beforeAll() {
     Configuration.browserSize = "1920x1080";
     Configuration.baseUrl = "https://demoqa.com";
     Configuration.pageLoadStrategy = "eager";
-    Configuration.holdBrowserOpen = true;
 }
 
     @Test
@@ -46,7 +45,6 @@ static void beforeAll() {
         $("#subjectsInput").setValue ("Arts").pressEnter();;
         $("#submit").pressEnter();
 
-        // Проверки
 
         $(".table-responsive").shouldHave(text("Denis Nikitin"));
         $(".table-responsive").shouldHave(text("Male"));
