@@ -1,59 +1,61 @@
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+import pages.RegistrationPages;
+import tests.TestBase;
 
-import java.io.File;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byValue;
-import static com.codeborne.selenide.Selenide.*;
-
-public class TextBoxTests {
-
-@BeforeAll
-static void beforeAll() {
-    Configuration.browserSize = "1920x1080";
-    Configuration.baseUrl = "https://demoqa.com";
-    Configuration.pageLoadStrategy = "eager";
-}
-
+public class TextBoxTests extends TestBase {
+RegistrationPages registrationPage = new RegistrationPages();
     @Test
     void fillFormTest() {
-        open("/automation-practice-form");
-
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
-        $("#firstName").setValue("Denis");
-        $("#lastName").setValue("Nikitin");
-        $("#userEmail").setValue("den.kennys@mail.ru");
-        $("[for='gender-radio-1']").click();
-        $("#userNumber").setValue("89279797979");
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__year-select").click();
-        $(byValue("2001")).click();
-        $(".react-datepicker__month-select").selectOption("March");
-        $("[aria-label ='Choose Wednesday, March 21st, 2001']").click();
-        $("[for='hobbies-checkbox-1']").click();
-        $("[for='hobbies-checkbox-3']").click();
-        $("#uploadPicture").uploadFromClasspath("ScreenCat.png");
-        $("#currentAddress").val("Mordovia");
-        $("#state").click();
-        $("#state input").val("Haryana").pressEnter();
-        $("#city").click();
-        $("#city input").val("Karnal").pressEnter();
-        $("#subjectsInput").setValue ("Arts").pressEnter();;
-        $("#submit").pressEnter();
-
-
-        $(".table-responsive").shouldHave(text("Denis Nikitin"));
-        $(".table-responsive").shouldHave(text("Male"));
-        $(".table-responsive").shouldHave(text("21 March,2001"));
-        $(".table-responsive").shouldHave(text("ScreenCat.png"));
-        $(".table-responsive").shouldHave(text("Haryana"));
-        $(".table-responsive").shouldHave(text("Karnal"));
-        $(".table-responsive").shouldHave(text("Arts"));
-
-
+       registrationPage.openPage()
+               .removeBanners()
+               .setFirstNameInput("Denis")
+               .setLastNameInput("Nikitin")
+               .setUserEmailInput("test@mail.ru")
+               .setGenderWrapper("Other")
+               .setNumberInput("8927976494")
+               .setCalendarInput("2001","March","21")
+               .setSubjectInput("Maths")
+               .setHobbies("Sports")
+               .loadPicture()
+               .setCurrentAddress("Mordovia")
+               .setState("Haryana")
+               .setSity("Karnal")
+               .clickSubmit()
+               .checkTitle("Thanks for submitting the form");
+       registrationPage.checkResult("Student Name","Denis Nikitin")
+               .checkResult("Student Email","test@mail.ru")
+               .checkResult("Gender", "Other")
+               .checkResult("Mobile","8927976494")
+               .checkResult("Date of Birth", "21 March,2001")
+               .checkResult("Subjects","Maths")
+               .checkResult("Hobbies","Sports")
+               .checkResult("Picture","ScreenCat.png")
+               .checkResult("Address","Mordovia")
+               .checkResult("State and City","Haryana Karnal");
+    }
+    @Test
+    void minimalFormTest() {
+        registrationPage.openPage()
+                .removeBanners()
+                .setFirstNameInput("Denis")
+                .setLastNameInput("Nikitin")
+                .setUserEmailInput("test@mail.ru")
+                .setGenderWrapper("Male")
+                .setNumberInput("8927976494")
+                .clickSubmit();
+        registrationPage.checkResult("Student Name","Denis Nikitin")
+                .checkResult("Student Email","test@mail.ru")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile","8927976494");
+    }
+@Test
+    void  incorrectForm () {
+    registrationPage.openPage()
+            .removeBanners()
+            .clickSubmit()
+            .checkBorderColors("border-color","rgb(220, 53, 69)");
     }
 }
+
+
