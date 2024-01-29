@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 public class RegistrationPages {
     CalendarComponent calendarComponent = new CalendarComponent();
     TableResults tableResults = new TableResults();
-    private SelenideElement firstNameInput = $("#firstName"),
+    private final SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
             userEmailInput = $("#userEmail"),
             genderWrapper = $("#genterWrapper"),
