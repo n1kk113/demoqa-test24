@@ -19,7 +19,7 @@ TestData dataTest = new TestData();
                .setCalendarInput(dataTest.year, dataTest.mouth, dataTest.day)
                .setSubjectInput(dataTest.subject)
                .setHobbies(dataTest.hobbies)
-               .loadPicture()
+               .loadPicture(dataTest.uploadPicture)
                .setCurrentAddress(dataTest.streetAddress)
                .setState(dataTest.state)
                .setSity(dataTest.city)

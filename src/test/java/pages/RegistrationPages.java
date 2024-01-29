@@ -81,8 +81,8 @@ public class RegistrationPages {
         return this;
     }
 
-    public RegistrationPages loadPicture() {
-        uploadPicture.uploadFromClasspath("ScreenCat.png");
+    public RegistrationPages loadPicture(String value) {
+        uploadPicture.uploadFromClasspath(value);
         return this;
     }
 
