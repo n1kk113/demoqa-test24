@@ -3,7 +3,6 @@ package tests;
 import data.TestData;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPages;
-import tests.TestBase;
 
 
 public class TextBoxTests extends TestBase {
