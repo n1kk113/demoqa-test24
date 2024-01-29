@@ -1,3 +1,5 @@
+package tests;
+
 import data.TestData;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPages;
