@@ -13,20 +13,20 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 public class RegistrationPages {
     CalendarComponent calendarComponent = new CalendarComponent();
     TableResults tableResults = new TableResults();
-    private SelenideElement firstNameInput = $("#firstName"),
-            lastNameInput = $("#lastName"),
-            userEmailInput = $("#userEmail"),
-            genderWrapper = $("#genterWrapper"),
-            numberInput = $("#userNumber"),
-            calendarInput = $("#dateOfBirthInput"),
-            subjectInput = $("#subjectsInput"),
-            checkboxHobbies = $("#hobbiesWrapper"),
-            uploadPicture = $("#uploadPicture"),
-            currentAddressInput = $("#currentAddress"),
-            selectState = $("#react-select-3-input"),
-            selectCity = $("#react-select-4-input"),
-            buttonSendForm = $("#submit"),
-            modalTitle = $("#example-modal-sizes-title-lg");
+    private final SelenideElement firstNameInput = $("#firstName");
+    private final SelenideElement lastNameInput = $("#lastName");
+    private final SelenideElement userEmailInput = $("#userEmail");
+    private final SelenideElement genderWrapper = $("#genterWrapper");
+    private final SelenideElement numberInput = $("#userNumber");
+    private final SelenideElement calendarInput = $("#dateOfBirthInput");
+    private final SelenideElement subjectInput = $("#subjectsInput");
+    private final SelenideElement checkboxHobbies = $("#hobbiesWrapper");
+    private final SelenideElement uploadPicture = $("#uploadPicture");
+    private final SelenideElement currentAddressInput = $("#currentAddress");
+    private final SelenideElement selectState = $("#react-select-3-input");
+    private final SelenideElement selectCity = $("#react-select-4-input");
+    private final SelenideElement buttonSendForm = $("#submit");
+    private final SelenideElement modalTitle = $("#example-modal-sizes-title-lg");
 
 
     public RegistrationPages openPage() {
@@ -65,9 +65,9 @@ public class RegistrationPages {
         return this;
     }
 
-    public RegistrationPages setCalendarInput(String year, String mouth, String day) {
+    public RegistrationPages setCalendarInput(String year, String month, int day) {
         calendarInput.click();
-        calendarComponent.setDate(year, mouth, day);
+        calendarComponent.setDate(year, month, day);
         return this;
     }
 
