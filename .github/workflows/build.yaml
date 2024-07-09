@@ -10,8 +10,8 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
-        distribution: 'corretto'
-        java-version: '18.0.2'
+        distribution: 'zulu'
+        java-version: '17'
     - name: Build with Gradle
       run: ./gradlew clean test
     - name: Print Results
