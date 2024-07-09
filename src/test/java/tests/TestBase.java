@@ -14,6 +14,7 @@ public class TestBase {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
+        Configuration.remote = "https://localhost:4444/wd/hub";
     }
 
     @BeforeEach
